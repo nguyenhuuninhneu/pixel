@@ -1,20 +1,96 @@
 @media (max-width:1199px){
+    .banner .banner-block .main{
+        width: 55%;
+    }
+    .banner .banner-block .main .content .common{
+        margin-top: 30px;
+    }
+    .banner .banner-block .main .content::before{
+        bottom: 20px;
+    }
+}
+
+@media (max-width:991px){
     .banner .banner-block .intro{
         width: 55%;
     }
     .banner .banner-block .intro .info{
         width: 70%;
     }
-}
-
-@media (max-width:991px){
-   
+    .banner .banner-block .intro .info .Polaris-Heading{
+        text-align: center;
+    }
+    .banner .banner-block .intro .info .out-year{
+        text-align: center;
+        margin: 10px 0;
+    }
+    .banner .banner-block .intro .info .year{
+        text-align: center;
+        display: inline-block;
+        padding-right: 0;
+    }
+    .banner .banner-block .intro .info .underline{
+        float: none;
+        margin: auto;
+        margin-top: 10px;
+        width: 25%;
+    }
+    .banner .banner-block .main .content .common{
+        margin-top: 5px;
+    }
+    .banner .banner-block .main .content .title{
+        padding-top: 20px;
+    }
+    .banner .banner-block .main{
+        width: 90%;
+        height: 100%;
+        top: 0;
+    }
+    .banner .banner-block .main .frame {
+        background-color: #FFFAEB;
+        width: 90%;
+        height: 90%;
+        margin: auto;
+        margin-top: 21px;
+        padding: 4px;
+    }
+    .banner .banner-block .main .frame::before {
+        content: "";
+        background: #C33D45;
+        width: 50px;
+        height: 100px;
+        right: 10%;
+        top: 20px;
+        position: absolute;
+        border-radius: 0 0 50px 50px;
+    }
+    .banner .banner-block .main .content .common .send-improvement .Polaris-InlineError{
+        padding-left: 10%;
+    }
+    .banner .banner-block .main .content .common .thank-you{
+        margin-top: 20px;
+    }
+    .banner .banner-block .main .content .common .thank-you p {
+        text-align: center;
+    }
 }
 
 @media (max-width:767px){ 
-   
+    .banner .banner-block .intro{
+        width: 90%;
+    }
+    .banner .banner-block .intro .info{
+        width: 80%;
+    }
+    
+    
 }
 
 @media (max-width:479px){ 
-   
+    .banner .banner-block .main .content .common{
+        margin-top: 55px;
+    }
+    .banner .banner-block .main .content .title{
+        padding-top: 30px;
+    }
 }

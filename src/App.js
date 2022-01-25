@@ -649,16 +649,19 @@ const App = () => {
                                                     <div className='intro' style={{ backgroundImage: `url(${background})` }}>
                                                         <div className='info'>
                                                             <Heading>Vietnamese lunar new year</Heading>
-                                                            <div className='year'>
-                                                                20
+                                                            <div className='out-year'>
+                                                                <div className='year'>
+                                                                    20
+                                                                </div>
+                                                                <div className='year'>
+                                                                    22
+                                                                </div>
+                                                                <div className='underline'>
+                                                                </div>
+                                                                <div className='cb'>
+                                                                </div>
                                                             </div>
-                                                            <div className='year'>
-                                                                22
-                                                            </div>
-                                                            <div className='underline'>
-                                                            </div>
-                                                            <div className='cb'>
-                                                            </div>
+
                                                             <p className='mt-10'>Orichi would like to inform you about the schedule of New Year Holiday 2022 as following:</p>
                                                             <p className='paragraph'><span className='c_DB4F6D'>27/01/2022</span> will be closed to
                                                                 observe Tet Holidays 2022 from
