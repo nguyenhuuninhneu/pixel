@@ -888,3 +888,258 @@
 .cb{
     clear: both;
 }
+
+/* Suggestion */
+.suggestion {
+    background-color: #fff;
+}
+
+.suggestion .light-fixed{
+    position: fixed;
+    top: 1rem;
+    right: 0;
+}
+.suggestion .light-hide {
+    right: -100%;
+    transition: 1s all ease-in-out; -moz-transition: 1s all ease-in-out;
+}
+.suggestion .light-show {
+    right: 0;
+    transition: 0.5s all ease-in-out; -moz-transition: 0.5s all ease-in-out;
+}
+.tag-horizontal:hover img{
+    width: 6.5rem;
+    transition: 0.5s all ease-in-out; -moz-transition: 0.5s all ease-in-out;
+}
+.tag-horizontal:not(:hover) img{
+    transition: 0.5s all ease-out; -moz-transition: 0.5s all ease-out;
+}
+.tag-horizontal img{
+    width: 5.5rem;
+}
+
+.suggestion .feature-fixed{
+    background-color: #fff;
+    position: fixed;
+    top: 5%;
+    width: 40%;
+    height: 90%;
+}
+.suggestion .feature-hide {
+    right: -100%;
+    transition: 1s all ease-in-out; -moz-transition: 1s all ease-in-out;
+}
+.suggestion .feature-show {
+    right: 0;
+    transition: 1s all ease-in-out; -moz-transition: 1s all ease-in-out;
+}
+/* .suggestion .header {
+    position: absolute;
+    width: 80%;
+    top: -20px;
+    right: 0;
+} */
+.suggestion .header .block-light{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: #EDB209;
+    padding: 4px 0;
+    position: relative;
+}
+.suggestion .header .block-light .title{
+    color: #fff;
+    font-weight: 700;
+    padding-left: 20px;
+    padding-right: 50px;
+    font-size: 2.5rem;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    box-sizing: border-box;
+}
+.suggestion .header .block-light .image{
+    padding-right: 2px;
+    position: absolute;
+    top: -45%;
+    right: 0;
+}
+.suggestion .header .block-light .image img{
+    width: 45px;
+}
+.suggestion .header .label{
+    font-style: italic;
+    text-align: right;
+    margin-top: 5px;
+    margin-right: 15px;
+    color: #000;
+}
+.suggestion .new-feature {
+    margin-top: 20px;
+    max-height: 470px;
+    overflow-y: scroll;
+}
+
+.suggestion .new-feature::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+.suggestion .new-feature::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+ 
+.suggestion .new-feature::-webkit-scrollbar-thumb {
+    background-color: #EDB209;
+    border-radius: 100px;
+}
+
+.suggestion .new-feature .Polaris-Card{
+    border-radius: 0;
+    box-shadow: none;
+}
+.suggestion .new-feature .tag-feature{
+    margin-bottom: 10px;
+}
+.suggestion .new-feature p span,
+.suggestion .new-feature .tag-feature span{
+    font-weight: 500;
+}
+.suggestion .new-feature .tag-feature a{
+    text-decoration: none;
+    color:#EDB209;
+    font-weight: 700;
+    padding-left: 2px;
+    font-size: 20px;
+}
+.suggestion .new-feature .tag-feature a:hover{
+    box-shadow: #fff;
+}
+.suggestion .dismiss{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+}
+.suggestion .tag-dismiss{
+    margin: auto;
+}
+.suggestion .dismiss img{width: 20px;}
+
+.suggestion .new-feature .list-feature{
+    max-height: 300px;
+   overflow-y: scroll;
+   box-sizing: border-box;
+   margin-top: 20px;
+}
+.suggestion .new-feature .list-feature .item-feature{
+    position: relative;
+    padding: 20px 5px;
+    margin-bottom: 20px;
+    margin-right: 5px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #EDB209;
+    box-shadow: 0px 4px 7px rgba(139, 139, 139, 0.08);
+}
+.suggestion .new-feature .list-feature .item-feature .vote-number{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #EDB209;
+    line-height: 16px;
+    color: #000;
+    font-weight: 500;
+    width: 40px;
+    text-align: center;
+    font-size: 12px;
+}
+.suggestion .new-feature .list-feature .item-feature .your-suggestion{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #EDB209;
+    color: #000;
+    font-weight: 500;
+    font-size: 12px;
+    padding: 0 4px;
+}
+.suggestion .new-feature .list-feature::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+.suggestion .new-feature .list-feature::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+ 
+.suggestion .new-feature .list-feature::-webkit-scrollbar-thumb {
+    background-color: #EDB209;
+    border-radius: 100px;
+}
+.suggestion .new-feature .list-feature .item-feature:last-child{
+    margin-bottom: 5px;
+}
+.suggestion .new-feature .list-feature .item-feature .left{
+    width: 15%;
+    font-size: 20px;
+    text-align: center;
+}
+.suggestion .new-feature .list-feature .item-feature .left .green svg{
+    color: #188061;
+}
+.suggestion .new-feature .list-feature .item-feature .left .gray svg{
+    color: #5C5F62;
+}
+.suggestion .new-feature .list-feature .item-feature .right{
+    width: calc(100% - 15%);
+}
+.suggestion .new-feature .list-feature .item-feature .right .title{
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+    width: 85%;
+    overflow: hidden;
+    height: 16px;
+    line-height: 16px;
+}
+.suggestion .new-feature .list-feature .item-feature .right .description{
+    font-size: 12px;
+    width: 90%;
+}
+.suggestion .new-feature .feature-show{
+    display: block;
+}
+.suggestion .new-feature .feature-hide{
+    display: none;
+}
+
+.suggestion .new-feature .form-add-feature .Polaris-Heading{
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+}
+.valid{
+    color: red;
+}
+.suggestion .new-feature .Polaris-Button--primary{
+    float: right;
+}
+
+.suggestion .new-feature hr{
+    color: #EEE;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.suggestion .new-feature textarea{
+    max-height: 106px;
+}
+
+/* view more */
+.my-anchor-css-class{
+    text-decoration: none;
+    color: #EDB209;
+}
