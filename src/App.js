@@ -2,7 +2,7 @@ import './App.css';
 import './assets/css/App.css';
 import './assets/css/responsive.css';
 import enTranslations from '@shopify/polaris/locales/en.json';
-import { Banner, Button, ButtonGroup, FormLayout, Layout, Modal, Page, TextField, Toast, Heading } from '@shopify/polaris';
+import { Banner, Button, ButtonGroup, FormLayout, Layout, Modal, Page, TextField, Toast, Heading,TextStyle, Card } from '@shopify/polaris';
 import React, { useEffect, useState, useRef } from 'react';
 import config from './config/config';
 import moreAppConfig from './config/moreAppConfig';
@@ -27,105 +27,6 @@ import dismiss from './assets/images/dismiss.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import ShowMoreText from "react-show-more-text";
-
-const listSuggest = [
-    {
-        Id: 1,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: true,
-        Title: "0 Upsell and Cross Sell options",
-        Description: "0 Send a Thank you email automatically after a costumer makes a purchase. Send a Thank you email automatically after a costumer makes a purchase."
-    },
-    {
-        Id: 2,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: false,
-        Title: "1 Upsell and Cross Sell options",
-        Description: "1 Send a Thank you email automatically after a costumer makes a purchase."
-    },
-    {
-        Id: 3,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: false,
-        Title: "Upsell and Cross Sell options",
-        Description: " Send a Thank you email automatically after a costumer makes a purchase."
-    },
-    {
-        Id: 4,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: false,
-        Title: "Upsell and Cross Sell options",
-        Description: " Send a Thank you email automatically after a costumer makes a purchase."
-    },
-    {
-        Id: 5,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: false,
-        Title: "Upsell and Cross Sell options",
-        Description: " Send a Thank you email automatically after a costumer makes a purchase."
-    },
-    {
-        Id: 6,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: false,
-        Title: "Upsell and Cross Sell options",
-        Description: " Send a Thank you email automatically after a costumer makes a purchase."
-    },
-    {
-        Id: 7,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: false,
-        Title: "Upsell and Cross Sell options",
-        Description: " Send a Thank you email automatically after a costumer makes a purchase."
-    },
-    {
-        Id: 8,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: false,
-        Title: "Upsell and Cross Sell options",
-        Description: " Send a Thank you email automatically after a costumer makes a purchase."
-    },
-    {
-        Id: 9,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: false,
-        Title: "Upsell and Cross Sell options",
-        Description: " Send a Thank you email automatically after a costumer makes a purchase."
-    },
-    {
-        Id: 10,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: false,
-        Title: "Upsell and Cross Sell options",
-        Description: " Send a Thank you email automatically after a costumer makes a purchase."
-    },
-    {
-        Id: 11,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: false,
-        Title: "Upsell and Cross Sell options",
-        Description: " Send a Thank you email automatically after a costumer makes a purchase."
-    },
-    {
-        Id: 12,
-        Status: 0,
-        Vote: 220,
-        YourSuggestion: false,
-        Title: "Upsell and Cross Sell options",
-        Description: " Send a Thank you email automatically after a costumer makes a purchase."
-    },
-]
 
 const App = () => {
     const [Shop, setShop] = useState(0);
@@ -193,9 +94,11 @@ const App = () => {
     const [clickedOutside, setClickedOutside] = useState(false);
     const myRef = useRef();
 
-    const handleClickOutside = e => {
-        if (!myRef.current.contains(e.target)) {
-            setClickedOutside(true);
+    const handleClickOutside = e => {   
+        if (myRef != undefined && myRef.current != undefined) {
+            if (!myRef.current.contains(e.target)) {
+                setClickedOutside(true);
+            }
         }
     };
 
@@ -246,11 +149,11 @@ const App = () => {
     }
 
     const AppCallbackCheckPlanCreatePixelFunction = () => {
-        debugger;
+        
         let that = this;
         axios.get(config.rootLink + '/Plan/CheckPlan?id=' + Shop.ID)
             .then(function (response) {
-                debugger;
+                
                 if (response.data.planNumber == 0 && response.data.countPixel > 0) {
                     setselectedTab(3);
                 }
@@ -444,19 +347,19 @@ const App = () => {
     }
 
     //Suggestion
-    const [Suggest, setSuggest] = useState(0);
+    const [Suggest, setSuggest] = useState(null);
 
     const [textSearch, setTextSearch] = useState('');
     const [textTitleValid, setTitleValid] = useState('');
     const [textDescriptionValid, setDescriptionValid] = useState('');
     const handleChangeTextSearch = (newValue) => {
         setTextSearch(newValue);
-        debugger;
+        
         if (newValue !== '') {
-            const newList = listSuggest.filter((item) => item.Title.toLowerCase().includes(newValue.toLowerCase()) || item.Description.toLowerCase().includes(newValue.toLowerCase()));
-            setList(newList);
+            const newList = Suggest.filter((item) => item.Title.toLowerCase().includes(newValue.toLowerCase()) || item.Description.toLowerCase().includes(newValue.toLowerCase()));
+            setListSearch(newList);
         } else {
-            setList(listSuggest);
+            setListSearch(Suggest);
         }
     }
     const [textTitle, setTextTitle] = useState('');
@@ -478,23 +381,68 @@ const App = () => {
             setDescriptionValid('');
         }
     };
+    const [stepSurvey, setStepSurvey] = useState(0);
     const [isShowFeature, setShowFeature] = useState(false);
     const [addNewFeature, setAddNewFeature] = useState(false);
-    const [list, setList] = React.useState(listSuggest);
-    function changeSuggestStatus(suggest) {
-        const newList = list.map((item) => {
-            if (item.Id === suggest.Id) {
-                const updatedItem = {
-                    ...item,
-                    Status: suggest.Status === 0 ? 1 : 0,
-                    Vote: suggest.Status === 0 ? item.Vote + 1 : item.Vote - 1,
-                };
-                return updatedItem;
-            }
-            return item;
-        });
+    const [listSearch, setListSearch] = useState(null);
+    //Paging
+    const [limitItem, setLimitItem] = useState(5);
+    const [currentPage, setCurrentPage] = useState(1);
 
-        setList(newList);
+
+    function changeSuggestStatus(suggest) {
+        
+        axios.post(config.rootLink + '/FrontEnd/ChangeReaction', {
+            obj: suggest,
+            shopID: Shop.ID,
+            isVote: !suggest.VotedShop.includes(Shop.ID.toString())
+        })
+            .then(function (response) {
+                
+
+                if (response.data.IsSuccess) {
+                    settoastSent(<Toast content={response.data.Messenger} onDismiss={() => { settoastSent(null) }} duration={4500} />)
+                    const newList = Suggest.map((item) => {
+                        if (item.ID === suggest.ID) {
+                            const updatedItem = {
+                                ...item,
+                                VotedShop: response.data.Suggest.VotedShop,
+                                VoteNumber: response.data.Suggest.VoteNumber,
+                            };
+                            return updatedItem;
+                        }
+                        return item;
+                    });
+                    setSuggest(newList);
+
+                    const newListSearch = listSearch.map((item) => {
+                        if (item.ID === suggest.ID) {
+                            const updatedItem = {
+                                ...item,
+                                VotedShop: response.data.Suggest.VotedShop,
+                                VoteNumber: response.data.Suggest.VoteNumber,
+                            };
+                            return updatedItem;
+                        }
+                        return item;
+                    });
+                    setListSearch(newListSearch);
+                }
+                else {
+                    settoastSent(<Toast content={response.data.Messenger} onDismiss={() => { settoastSent(null) }} duration={4500} />)
+                }
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+        
+    }
+    function handleCancelAddSuggestion(){
+        setAddNewFeature(false);
+        setTextSearch('');
+        setStepSurvey(0);
+        setListSearch(Suggest);
     }
     function handleSendSuggestion() {
         if (textTitle == '') {
@@ -506,41 +454,51 @@ const App = () => {
             return false;
         }
         var newItem = {
-            Id: 100,
+            ShopID: Shop.ID,
             Title: textTitle,
             Description: textDes,
-            Vote: 1,
-            Status: 1,
-            YourSuggestion: true,
         }
-        // axios.post(config.rootLink + '/FrontEnd/CreateSuggest', {
-        //     obj: newItem
-        // })
-        //     .then(function (response) {
-        //         if (response.IsSuccess) {
-        //             list.unshift(newItem);
-        //             setList(list);
-        //             setAddNewFeature(false);
-        //         }
-
-        //     })
-        //     .catch(function (error) {
-        //         // handle error
-        //         console.log(error);
-        //     })
-        list.unshift(newItem);
-        setList(list);
-        setAddNewFeature(false);
+        axios.post(config.rootLink + '/FrontEnd/CreateSuggest', {
+            obj: newItem,
+            shopID: Shop.ID,
+        })
+            .then(function (response) {
+                if (response.data.IsSuccess) {
+                    Suggest.unshift(response.data.suggest);
+                    settoastSent(<Toast content={response.data.Messenger} onDismiss={() => { settoastSent(null) }} duration={4500} />)
+                    setSuggest(Suggest);
+                    setCurrentPage(1);
+                    setLimitItem(5);
+                    setAddNewFeature(false);
+                    setStepSurvey(2);
+                }
+                else {
+                    settoastSent(<Toast content={response.data.Messenger} onDismiss={() => { settoastSent(null) }} duration={4500} />)
+                }
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
     }
     const openFormAddNewFeature = () => {
+        setStepSurvey(1);
+        const newList = Suggest.slice(0,3);
+        setListSearch(newList);
         setTextTitle('');
         setTextDes('');
         setAddNewFeature(true);
 
     }
-
+    const handleScroll = (e) => {
+        const bottom = e.target.scrollHeight - Math.round(e.target.scrollTop) === e.target.clientHeight;
+        
+        if (bottom && (textSearch === '' && !addNewFeature)) { 
+            setCurrentPage(currentPage => currentPage + 1);
+            setLimitItem(limitItem => limitItem + 5);
+        }
+     }
     useEffect(async () => {
-        debugger;
 
         console.log('abc: ' + config.admin);
         if (config.admin == undefined) {
@@ -619,7 +577,7 @@ const App = () => {
                                     defaultValue={0}
                                     precision={1}
                                     onChange={(event, newValue) => {
-                                        debugger;
+                                        
                                         if (newValue != null) {
                                             if (newValue == 5) {
                                                 axios.post(config.rootLink + '/FrontEnd/CreateRating', {
@@ -758,7 +716,7 @@ const App = () => {
                                                                 defaultValue={0}
                                                                 precision={1}
                                                                 onChange={(event, newValue) => {
-                                                                    debugger;
+                                                                    
                                                                     if (newValue != null) {
                                                                         if (newValue == 5 || newValue == 4) {
                                                                             axios.post(config.rootLink + '/FrontEnd/CreateRating', {
@@ -840,7 +798,7 @@ const App = () => {
                         : <></>}
 
 
-                    {true ?
+                    {false ?
                         <>
                             <div id='root-banner'>
                                 <div className={closeBanner || clickedOutside ? 'hide-banner' : 'banner'}>
@@ -923,7 +881,7 @@ const App = () => {
                                                                                             defaultValue={0}
                                                                                             precision={1}
                                                                                             onChange={(event, newValue) => {
-                                                                                                debugger;
+                                                                                                
                                                                                                 if (newValue != null) {
                                                                                                     if (newValue == 5 || newValue == 4) {
                                                                                                         axios.post(config.rootLink + '/FrontEnd/CreateRating', {
@@ -1006,7 +964,7 @@ const App = () => {
                     {/* Suggestion */}
                     <div className='suggestion'>
                         <div className={!isShowFeature ? 'light-fixed light-show' : 'light-fixed light-hide'}>
-                            <a href="#" onClick={() => { setShowFeature(true) }} className='tag-horizontal' title="Features Suggestion" >
+                            <a onClick={() => { setShowFeature(true) }} className='tag-horizontal pointer' title="Features Suggestion" >
                                 <img src={lighthorizontal} />
                             </a>
                         </div>
@@ -1036,7 +994,7 @@ const App = () => {
                                                         </p>
                                                         <div className='tag-feature'>
                                                             <TextStyle >You can always suggest a </TextStyle>
-                                                            <a href="#" onClick={() => { openFormAddNewFeature() }} title="New feature" >
+                                                            <a className='pointer' onClick={() => { openFormAddNewFeature() }} title="New feature" >
                                                                 New feature
                                                             </a>
                                                         </div>
@@ -1071,20 +1029,23 @@ const App = () => {
                                                         multiline={4}
                                                     />
                                                     <div className='mt-20'>
-                                                        <Button onClick={() => { setAddNewFeature(false) }}>Cancel</Button>
+                                                        <Button onClick={() => { handleCancelAddSuggestion() }}>Cancel</Button>
                                                         <Button onClick={() => { handleSendSuggestion() }} primary>Send</Button>
                                                     </div>
                                                     <hr className='mb-20 mt-20' />
                                                 </>
                                         }
 
-                                        <div className='list-feature'>
+                                        <div className='list-feature' onScroll={handleScroll}>
                                             {
-                                                list.map((suggest, index) => {
+                                                (textSearch === '' && !addNewFeature) && Suggest !== null && Suggest !== undefined ? 
+                                                
+                                                Suggest.slice(0, limitItem).map((suggest, index) => {
+                                                    
                                                     return (
                                                         <div className='item-feature' key={index}>
                                                             <div className='left'>
-                                                                <a href="#" className={suggest.Status == 0 ? 'gray' : 'green'} onClick={() => { changeSuggestStatus(suggest) }} title={suggest.Status == 0 ? 'Like' : 'Dislike'} >
+                                                                <a className={!suggest.VotedShop.includes(Shop.ID.toString()) ? 'gray pointer' : 'green pointer'} onClick={() => { changeSuggestStatus(suggest) }} title={suggest.VotedShop.includes(Shop.ID.toString()) ? 'Like' : 'Dislike'} >
                                                                     <FontAwesomeIcon icon={faThumbsUp} />
                                                                 </a>
                                                             </div>
@@ -1111,9 +1072,9 @@ const App = () => {
                                                             <div className='cb'>
                                                             </div>
                                                             <div className='vote-number'>
-                                                                {suggest.Vote} votes
+                                                                {suggest.VoteNumber} votes
                                                             </div>
-                                                            {suggest.YourSuggestion ?
+                                                            {suggest.ShopID == Shop.ID ?
                                                                 <>
                                                                     <div className='your-suggestion'>
                                                                         your suggestion
@@ -1123,21 +1084,74 @@ const App = () => {
                                                         </div>
                                                     )
                                                 })
+                                                
+                                                : null
                                             }
+{
+                                                (textSearch !== '' ||  (textSearch === '' && addNewFeature)) && listSearch != null && listSearch != undefined ? 
+                                                
+                                                listSearch.map((suggest, index) => {
+                                                    
+                                                    return (
+                                                        <div className='item-feature' key={index}>
+                                                            <div className='left'>
+                                                                <a className={!suggest.VotedShop.includes(Shop.ID.toString()) ? 'gray' : 'green'} onClick={() => { changeSuggestStatus(suggest) }} title={suggest.VotedShop.includes(Shop.ID.toString()) ? 'Like' : 'Dislike'} >
+                                                                    <FontAwesomeIcon icon={faThumbsUp} />
+                                                                </a>
+                                                            </div>
+                                                            <div className='right'>
+                                                                <div className='title'>
+                                                                    {suggest.Title}
+                                                                </div>
+                                                                <div className='description mb-10'>
+                                                                    <ShowMoreText
+                                                                        /* Default options */
+                                                                        lines={2}
+                                                                        more="view more"
+                                                                        less="view less"
+                                                                        className="content-css"
+                                                                        anchorClass="my-anchor-css-class"
+                                                                        expanded={false}
+                                                                        truncatedEndingComponent={"... "}
+                                                                    >
+                                                                        {suggest.Description}
 
+                                                                    </ShowMoreText>
+                                                                </div>
+                                                            </div>
+                                                            <div className='cb'>
+                                                            </div>
+                                                            <div className='vote-number'>
+                                                                {suggest.VoteNumber} votes
+                                                            </div>
+                                                            {suggest.ShopID == Shop.ID ?
+                                                                <>
+                                                                    <div className='your-suggestion'>
+                                                                        your suggestion
+                                                                    </div>
+                                                                </> : ''}
+
+                                                        </div>
+                                                    )
+                                                })
+                                                
+                                                : null
+                                            }
                                         </div>
-                                        <div className='dismiss'>
-                                            <a href="#" onClick={() => { setShowFeature(false) }} className='tag-dismiss' title="Close" >
-                                                <img src={dismiss} />
-                                            </a>
-                                        </div>
+                                        
                                     </Card.Section>
                                 </Card>
+                                
                             </div>
 
 
-
+                            <div className='dismiss'>
+                                            <a onClick={() => { setShowFeature(false); setStepSurvey(0) }} className='tag-dismiss pointer' title="Close" >
+                                                <img src={dismiss} />
+                                            </a>
+                                        </div>
                         </div>
+                        
                     </div>
                 </>
             );

@@ -8,6 +8,9 @@
     .banner .banner-block .main .content::before{
         bottom: 20px;
     }
+    .suggestion .feature-fixed{
+        width: 60%;
+    }
 }
 
 @media (max-width:991px){
@@ -73,6 +76,9 @@
     .banner .banner-block .main .content .common .thank-you p {
         text-align: center;
     }
+    .suggestion .feature-fixed{
+        width: 70%;
+    }
 }
 
 @media (max-width:767px){ 
@@ -82,8 +88,12 @@
     .banner .banner-block .intro .info{
         width: 80%;
     }
-    
-    
+    .suggestion .feature-fixed{
+        width: 80%;
+    }
+    .suggestion .new-feature{
+        max-height: 600px;
+    }
 }
 
 @media (max-width:479px){ 
@@ -92,5 +102,11 @@
     }
     .banner .banner-block .main .content .title{
         padding-top: 30px;
+    }
+    .suggestion .feature-fixed{
+        width: 90%;
+    }
+    .suggestion .new-feature{
+        max-height: 480px;
     }
 }

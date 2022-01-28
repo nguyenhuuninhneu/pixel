@@ -882,6 +882,17 @@
 .mt-10{
     margin-top: 10px;
 }
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
 .pointer:hover{
     cursor: pointer;
 }
@@ -924,6 +935,7 @@
     top: 5%;
     width: 40%;
     height: 90%;
+    z-index: 400;
 }
 .suggestion .feature-hide {
     right: -100%;
@@ -977,6 +989,7 @@
     margin-top: 20px;
     max-height: 470px;
     overflow-y: scroll;
+    position: relative;
 }
 
 .suggestion .new-feature::-webkit-scrollbar {

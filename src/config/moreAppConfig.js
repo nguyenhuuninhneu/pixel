@@ -23,6 +23,8 @@ const moreAppConfig = {
     },
     linkDoc: 'https://orichi.info/',
     linkWebsite: 'https://orichi.info/',
-    ImproveValidationText: 'Content must be required.'
+    ImproveValidationText: 'Content must be required.',
+    TilteValidationText: 'Title must be required.',
+    DescriptionValidationText: 'Description must be required.'
 }
 export default moreAppConfig;
